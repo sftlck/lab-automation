@@ -1,12 +1,12 @@
-Attribute VB_Name = "MÛdulo3"
+Attribute VB_Name = "M√≥dulo3"
 ' ==============================
-' PROJETO: GERA«√O DE CERTIFICADO DE CALIBRA«√O
-' AUTOMA«√O VBA EXCEL E UPLOAD PARA SHAREPOINT
+' PROJETO: GERA√á√ÉO DE CERTIFICADO DE CALIBRA√á√ÉO
+' AUTOMA√á√ÉO VBA EXCEL E UPLOAD PARA SHAREPOINT
 ' ==============================
 
 Option Explicit
 
-' Vari·veis Globais
+' Vari√°veis Globais
 Public CertNum As String
 Public Certificado As Integer
 Public NomeArq As String
@@ -27,8 +27,10 @@ Public pdffinal_rmdNomeArq  As String
 Public Std_wordNomeArqOneDrive As String
 Public Std_excelNomeArq As String
 
+msgbox "ESTE SUPLEMENTO FOI IMPORTADO DO GITHUB"
+
 ' -------------------------------
-' FUN«√O CENTRAL: Obtem inst‚ncia do Word
+' FUN√á√ÉO CENTRAL: Obtem inst√¢ncia do Word
 ' -------------------------------
 Function GetWordApp() As Word.Application
     On Error Resume Next
@@ -83,15 +85,15 @@ Sub AbreDocumentoModelo()
         OS = ExtraiCertNum(OSNum)
         
         If Tipo = "" Or IsError(Tipo) Then
-            MsgBox "CÈlula 'Tipo' n„o preenchido.", vbCritical
+            MsgBox "C√©lula 'Tipo' n√£o preenchido.", vbCritical
             Exit Sub
         End If
         
         If Tipo = .Range("N23").Text Then
-            caminhoModelo = Diretorio & "Modelo Padr„o RBC - 2025-28.dotx"
+            caminhoModelo = Diretorio & "Modelo Padr√£o RBC - 2025-28.dotx"
         End If
         If Tipo = .Range("N24").Text Then
-            caminhoModelo = Diretorio & "Modelo Padr„o - 2025-28.dotx"
+            caminhoModelo = Diretorio & "Modelo Padr√£o - 2025-28.dotx"
         End If
     End With
     
@@ -136,7 +138,7 @@ Sub Check_SaveAs2(onedriveDiretorio As String, pdffinal_NomeArq As String)
     If Dir(OSfolder) = "" Then
         MkDir (OSfolder)
         MkDir (OSfolder & "Cliente\")
-        Application.Wait (Now + TimeValue("0:00:02"))                                   'CASTRO: DAR TEMPO PARA ONEDRIVE SINCRONIZAR CRIA«√O DE PASTA VIA CAMINHO ABSOLUTO COM O SHAREPOINT PARA SALVAR ARQUIVOS
+        Application.Wait (Now + TimeValue("0:00:02"))                                   'CASTRO: DAR TEMPO PARA ONEDRIVE SINCRONIZAR CRIA√á√ÉO DE PASTA VIA CAMINHO ABSOLUTO COM O SHAREPOINT PARA SALVAR ARQUIVOS
         Export_pdf
         GetWordApp().Application.Quit SaveChanges:=wdDoNotSaveChanges
         MsgBox "Certificado gerado com sucesso!"
@@ -144,7 +146,7 @@ Sub Check_SaveAs2(onedriveDiretorio As String, pdffinal_NomeArq As String)
         If Dir(onedriveDiretorio) = "" Then
             Export_pdf
             GetWordApp().Application.Quit SaveChanges:=False
-            Application.Wait (Now + TimeValue("0:00:02"))                           ' CASTRO: … NECESS¡RIO USAR TEMPO PARA O SHELL ENCERRAR A APLICA«√O ANTES DE EXCLUIR O REGISTRO
+            Application.Wait (Now + TimeValue("0:00:02"))                           ' CASTRO: √â NECESS√ÅRIO USAR TEMPO PARA O SHELL ENCERRAR A APLICA√á√ÉO ANTES DE EXCLUIR O REGISTRO
             Kill Std_wordNomeArqOneDrive
             MsgBox "Certificado gerado com sucesso!"
             Else:
@@ -192,7 +194,7 @@ End Function
 ' COLAGEM DE TEXTO FORMATADO
 ' -------------------------------
 Sub ColaTextoFormatado(texto As String, Optional negrito As Boolean = False, Optional italico As Boolean = False, Optional corFonte As Long = -16777216, Optional centralizar As Boolean = False)
-    ' corFonte padr„o: preto (cor RGB = -16777216)
+    ' corFonte padr√£o: preto (cor RGB = -16777216)
     Dim oWord As Word.Application
     Set oWord = GetWordApp()
 
@@ -205,7 +207,7 @@ Sub ColaTextoFormatado(texto As String, Optional negrito As Boolean = False, Opt
     End With
 End Sub
 ' -------------------------------
-' INSER«’ES NO DOCUMENTO
+' INSER√á√ïES NO DOCUMENTO
 ' -------------------------------
 Sub InsereParagrafoWord()
     GetWordApp().Selection.TypeParagraph
@@ -279,7 +281,7 @@ Sub InsereProcedimento()
         SelecionaIndicador "PC"
         For i = 24 To 26
             texto = .Cells(i, 3).Text
-            'texto = .Cells(i, 3).Text & " - Revis„o: " & .Cells(i, 4).Text             ' CASTRO: Ocultado pois <procedure_instrument> n„o tem entidade <revision>
+            'texto = .Cells(i, 3).Text & " - Revis√£o: " & .Cells(i, 4).Text             ' CASTRO: Ocultado pois <procedure_instrument> n√£o tem entidade <revision>
             If .Cells(i, 3).Text = "" Then
                 Exit For
             ElseIf .Cells(i, 3).Text <> "" And i = 24 Then
@@ -294,12 +296,12 @@ Sub InsereProcedimento()
 End Sub
 
 ' -------------------------------
-' M…TODOS
+' M√âTODOS
 ' -------------------------------
 Sub InsereMetodo()
     Dim i As Integer, texto As String
     With Sheets("Informacoes")
-        SelecionaIndicador "MÈtodos"
+        SelecionaIndicador "M√©todos"
         For i = 29 To 32
             texto = .Cells(i, 3).Text
             If texto = "" Then
@@ -316,7 +318,7 @@ Sub InsereMetodo()
 End Sub
 
 ' -------------------------------
-' OBSERVA«’ES
+' OBSERVA√á√ïES
 ' -------------------------------
 Sub InsereObservacoes()
     With Sheets("Informacoes")
@@ -324,7 +326,7 @@ Sub InsereObservacoes()
     End With
 End Sub
 ' -------------------------------
-' LOCALIZA«√O
+' LOCALIZA√á√ÉO
 ' -------------------------------
 Sub InsereLocalizacao()
 
@@ -444,12 +446,12 @@ Sub ColaImagem(sheet As Worksheet, cell As Range, Optional largura As Double = -
             .TypeParagraph
         End With
     Else
-        MsgBox "Nenhuma imagem encontrada na cÈlula " & cell.Address, vbCritical
+        MsgBox "Nenhuma imagem encontrada na c√©lula " & cell.Address, vbCritical
         Exit Sub
     End If
 End Sub
 ' -------------------------------
-' PADR’ES
+' PADR√ïES
 ' -------------------------------
 Sub InserePadroes()
     Dim CONTAR As Integer: CONTAR = 1
@@ -457,7 +459,7 @@ Sub InserePadroes()
     With Sheets("Informacoes")
         SelecionaIndicador "TAGP1"
         Do While .Cells(7 + CONTAR, 6).Text <> ""
-            texto = .Cells(7 + CONTAR, 7).Text & ", identificaÁ„o " & .Cells(7 + CONTAR, 6).Text & ", certificado n˙mero " & .Cells(7 + CONTAR, 8).Text & " emitido por " & .Cells(7 + CONTAR, 9).Text & ", com validade atÈ " & .Cells(7 + CONTAR, 10).Value
+            texto = .Cells(7 + CONTAR, 7).Text & ", identifica√ß√£o " & .Cells(7 + CONTAR, 6).Text & ", certificado n√∫mero " & .Cells(7 + CONTAR, 8).Text & " emitido por " & .Cells(7 + CONTAR, 9).Text & ", com validade at√© " & .Cells(7 + CONTAR, 10).Value
             If .Cells(7 + CONTAR, 10).Value < .Cells(34, 7).Value Then
                 ColaTextoFormatado texto, True, False, vbRed
             Else
@@ -471,7 +473,7 @@ Sub InserePadroes()
 End Sub
 
 ' -------------------------------
-' SUBSTITUI«√O DE SÕMBOLOS
+' SUBSTITUI√á√ÉO DE S√çMBOLOS
 ' -------------------------------
 Sub SubstituiTexto(findText As String, replaceText As String)
     With GetWordApp().Selection.Find
@@ -498,7 +500,7 @@ Sub SubstituiInfinito()
 End Sub
 
 ' -----------------------------------
-' PERÕODO DE CALIBRA«√O
+' PER√çODO DE CALIBRA√á√ÉO
 ' -----------------------------------
 Sub PeriodoCalibracao()
     Dim dtIni As Variant, dtFim As Variant
@@ -507,13 +509,13 @@ Sub PeriodoCalibracao()
         dtIni = .Range("G31").Value
         dtFim = .Range("G32").Value
         If dtIni = dtFim Then
-            '.Range("BH1") = "Data da calibraÁ„o: "
-            '.Range("BK1") = "Data da calibraÁ„o: " & dtIni
-            texto = "Data da calibraÁ„o: " & dtIni
+            '.Range("BH1") = "Data da calibra√ß√£o: "
+            '.Range("BK1") = "Data da calibra√ß√£o: " & dtIni
+            texto = "Data da calibra√ß√£o: " & dtIni
         Else
-            '.Range("BH1") = "PerÌodo de calibraÁ„o: "
-            '.Range("BK1") = "PerÌodo de calibraÁ„o: " & dtIni & " a " & dtFim
-            texto = "PerÌodo de calibraÁ„o: " & dtIni & " a " & dtFim
+            '.Range("BH1") = "Per√≠odo de calibra√ß√£o: "
+            '.Range("BK1") = "Per√≠odo de calibra√ß√£o: " & dtIni & " a " & dtFim
+            texto = "Per√≠odo de calibra√ß√£o: " & dtIni & " a " & dtFim
         End If
     End With
     SelecionaIndicador "PeriodoCalibracao"
@@ -521,7 +523,7 @@ Sub PeriodoCalibracao()
 End Sub
 
 ' -------------------------------
-' INSER«√O DE PLANILHAS DOS RESULTADOS
+' INSER√á√ÉO DE PLANILHAS DOS RESULTADOS
 ' -------------------------------
 Sub InsereTabelaPlanilha()
     On Error GoTo TrataErro
@@ -534,16 +536,16 @@ Sub InsereTabelaPlanilha()
     Dim a As Integer
     Dim b As Integer
     
-    ' === Etapa 1: Obter a referÍncia da planilha "Resultados" ===
+    ' === Etapa 1: Obter a refer√™ncia da planilha "Resultados" ===
     Set wsResultados = ThisWorkbook.Sheets("Resultados")
 
 
     For a = 1 To 4
         For b = 2 To 6
-            ' === Etapa 2: Obter o intervalo de cÈlulas descrito na cÈlula B2 ===
+            ' === Etapa 2: Obter o intervalo de c√©lulas descrito na c√©lula B2 ===
             intervaloTexto = Trim(wsResultados.Cells(b, 2 * a).Value)
             If intervaloTexto = "" Then
-                MsgBox "A cÈlula com dados da aba 'Resultados' est· vazia. Nenhum intervalo foi especificado.", vbExclamation
+                MsgBox "A c√©lula com dados da aba 'Resultados' est√° vazia. Nenhum intervalo foi especificado.", vbExclamation
                 Exit Sub
             End If
             ' === Etapa 3: Tentar criar o intervalo a partir do texto ===
@@ -552,7 +554,7 @@ Sub InsereTabelaPlanilha()
             On Error GoTo TrataErro
 
             If rngTabela Is Nothing Then
-                MsgBox "O intervalo '" & intervaloTexto & "' informado em dados È inv·lido.", vbCritical
+                MsgBox "O intervalo '" & intervaloTexto & "' informado em dados √© inv√°lido.", vbCritical
                 Exit Sub
             End If
 
@@ -569,7 +571,7 @@ Sub InsereTabelaPlanilha()
                     .PasteExcelTable LinkedToExcel:=False, WordFormatting:=False, RTF:=False
                 End With
             Else
-                MsgBox "O marcador 'Planilhas' n„o foi encontrado no documento Word.", vbCritical
+                MsgBox "O marcador 'Planilhas' n√£o foi encontrado no documento Word.", vbCritical
             End If
         Next b
     Next a
@@ -581,7 +583,7 @@ TrataErro:
 End Sub
 
 ' -------------------------------
-' M”DULO DE EXECU«√O FINAL
+' M√ìDULO DE EXECU√á√ÉO FINAL
 ' -------------------------------
 Sub GerarCertificadoCompleto1()
 
@@ -589,7 +591,7 @@ Sub GerarCertificadoCompleto1()
     
     Application.ScreenUpdating = False
 
-    ' Exemplo: valores devem vir da interface (UserForm ou cÈlula)
+    ' Exemplo: valores devem vir da interface (UserForm ou c√©lula)
     CertNum = Sheets("Informacoes").Cells(33, 7).Text
     dataEmissao = Format(Sheets("Informacoes").Cells(34, 7).Value, "dd/mm/yyyy")
     Ano = Right(dataEmissao, 4)
@@ -601,8 +603,8 @@ Sub GerarCertificadoCompleto1()
     AbreDocumentoModelo
     If Certificado = 0 Then Exit Sub
 
-    ' CabeÁalho do certificado
-    SelecionaIndicador "N˙mero": ColaTextoFormatado texto:=CertNum, centralizar:=True, negrito:=True
+    ' Cabe√ßalho do certificado
+    SelecionaIndicador "N√∫mero": ColaTextoFormatado texto:=CertNum, centralizar:=True, negrito:=True
 '    SelecionaIndicador "Data": ColaTextoFormatado dataEmissao
 
 InsereCliente
@@ -612,16 +614,16 @@ InsereCliente
         SelecionaIndicador "Fabricante": ColaTextoFormatado .Range("D11").Text
         SelecionaIndicador "CondAmb": ColaTextoFormatado texto:=.Range("D22").Text
         SelecionaIndicador "Modelo": ColaTextoFormatado .Range("D12").Text
-        SelecionaIndicador "SÈrie": ColaTextoFormatado .Range("D13").Text 'n„o retornou
+        SelecionaIndicador "S√©rie": ColaTextoFormatado .Range("D13").Text 'n√£o retornou
         If .Range("D9").Text <> "" Then
             SelecionaIndicador "TAG": ColaTextoFormatado .Range("D9").Text
         End If
         PeriodoCalibracao
         SelecionaIndicador "Data": ColaTextoFormatado dataEmissao
-        SelecionaIndicador "Protocolo": ColaTextoFormatado .Range("D8").Text 'n„o retornou
+        SelecionaIndicador "Protocolo": ColaTextoFormatado .Range("D8").Text 'n√£o retornou
     End With
 
-    ' Procedimentos e mÈtodos
+    ' Procedimentos e m√©todos
     InserePadroes
     InsereProcedimento
     InsereMetodo
@@ -642,5 +644,6 @@ InsereCliente
     
     Application.ScreenUpdating = True
 End Sub
+
 
 
