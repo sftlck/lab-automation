@@ -1,4 +1,4 @@
-Attribute VB_Name = "MÛdulo1"
+Attribute VB_Name = "M√≥dulo1"
 Sub OpenWordDoc()
 '
 Dim wdApp As Word.Application, wdDoc As Word.Document
@@ -8,7 +8,7 @@ Dim wdApp As Word.Application, wdDoc As Word.Document
     Set wdDoc = CreateObject("Word.Application")
     End If
     On Error GoTo 0
-    Set wdDoc = Word.Application.Documents.Open("C:\Users\carlos.nadaletti\Desktop\IST PGE\Novos ServiÁos\Eletricidade\Planilhas\Elet\Modelo Padr„o-2024.dotx")
+    Set wdDoc = Word.Application.Documents.Open("C:\Users\carlos.nadaletti\Desktop\IST PGE\Novos Servi√ßos\Eletricidade\Planilhas\Elet\Modelo Padr√£o-2024.dotx")
     Word.Application.Visible = True
     wdDoc.Activate
 End Sub
@@ -26,10 +26,10 @@ Dim oRange As Word.Range
             .Activate
             .WindowState = wdWindowStateNormal
         End With
-    Set oDoc = oWord.Documents.Open("C:\Users\carlos.nadaletti\Desktop\IST PGE\Novos ServiÁos\Eletricidade\Planilhas\Elet\Modelo Padr„o-2024.dotx")
+    Set oDoc = oWord.Documents.Open("C:\Users\carlos.nadaletti\Desktop\IST PGE\Novos Servi√ßos\Eletricidade\Planilhas\Elet\Modelo Padr√£o-2024.dotx")
     oDoc.Activate
     
-    Diretorio = "C:\Users\carlos.nadaletti\Desktop\IST PGE\Novos ServiÁos\Eletricidade\Planilhas"
+    Diretorio = "C:\Users\carlos.nadaletti\Desktop\IST PGE\Novos Servi√ßos\Eletricidade\Planilhas"
     NumAno = Right(CertNum, 4)
     CertInf = Left(CertNum, 5)
     
@@ -39,7 +39,7 @@ Dim oRange As Word.Range
     NomeArq = Diretorio & "\Ca-" & NumAno & "\" & CertInf & "-" & NumAno & ".doc"
     If Dir(NomeArq) = CertInf & "-" & NumAno & ".doc" Then
 
-        If MsgBox("J· existe o Arquivo ' " & NomeArq & "'. Deseja SubstituÌ-lo ?", vbYesNo + vbQuestion + vbDefaultButton2, "Planilha On-Line - ConfirmaÁ„o de N∫ de Certificado") = vbNo Then
+        If MsgBox("J√° existe o Arquivo ' " & NomeArq & "'. Deseja Substitu√≠-lo ?", vbYesNo + vbQuestion + vbDefaultButton2, "Planilha On-Line - Confirma√ß√£o de N¬∫ de Certificado") = vbNo Then
           Certificado = 0
           
           Exit Sub
@@ -100,7 +100,7 @@ On Error GoTo MergeButton_Err
     Dim objWord As Word.Application
     Set objWord = GetObject(, "Word.Application")
     With objWord
-        'torna a aplicaÁao visivel
+        'torna a aplica√ßao visivel
         .Visible = True
         .Selection.TypeText Text:=texto
     End With
@@ -220,7 +220,7 @@ On Error GoTo MergeButton_Err
     Dim objWord As Word.Application
     Set objWord = GetObject(, "Word.Application")
     With objWord
-        'torna a aplicaÁao visivel
+        'torna a aplica√ßao visivel
         .Visible = True
         .Selection.TypeParagraph
         '.Selection.text = Chr(13) & Chr(10)
@@ -300,7 +300,7 @@ End If
 Do While (CONTAR < 4)
     deletar
     CONTAR = CONTAR + 1
-    'MsgBox ("Delete n˙mero=" & contar)
+    'MsgBox ("Delete n√∫mero=" & contar)
     Loop
 End Sub
 
@@ -317,31 +317,31 @@ Dim texto As String
 Sheets("Cadastro_Dados").Select
 SelecionaIndicador ("PC")
 If Range("C21") <> "" Then
-    texto = "Procedimento de calibraÁ„o " & Range("C21") & " - Revis„o " & Range("D21") & " "
+    texto = "Procedimento de calibra√ß√£o " & Range("C21") & " - Revis√£o " & Range("D21") & " "
     ColaTextoWord (texto)
 End If
 If Range("C22") <> "" Then
-    texto = "Procedimento de calibraÁ„o " & Range("C22") & " - Revis„o " & Range("D22") & " "
+    texto = "Procedimento de calibra√ß√£o " & Range("C22") & " - Revis√£o " & Range("D22") & " "
     InsereParagrafoWord
     ColaTextoWord (texto)
 End If
 If Range("C23") <> "" Then
-    texto = "Procedimento de calibraÁ„o " & Range("C23") & " - Revis„o " & Range("D23") & " "
+    texto = "Procedimento de calibra√ß√£o " & Range("C23") & " - Revis√£o " & Range("D23") & " "
     InsereParagrafoWord
     ColaTextoWord (texto)
 End If
 If Range("C24") <> "" Then
-    texto = "Procedimento de calibraÁ„o " & Range("C24") & " - Revis„o " & Range("D24") & " "
+    texto = "Procedimento de calibra√ß√£o " & Range("C24") & " - Revis√£o " & Range("D24") & " "
     InsereParagrafoWord
     ColaTextoWord (texto)
 End If
 If Range("C25") <> "" Then
-    texto = "Procedimento de calibraÁ„o " & Range("C25") & " - Revis„o " & Range("D25") & " "
+    texto = "Procedimento de calibra√ß√£o " & Range("C25") & " - Revis√£o " & Range("D25") & " "
     InsereParagrafoWord
     ColaTextoWord (texto)
 End If
 If Range("C26") <> "" Then
-    texto = "Procedimento de calibraÁ„o " & Range("C26") & " - Revis„o " & Range("D26") & " "
+    texto = "Procedimento de calibra√ß√£o " & Range("C26") & " - Revis√£o " & Range("D26") & " "
     InsereParagrafoWord
     ColaTextoWord (texto)
 End If
@@ -352,7 +352,7 @@ Sub InsereMetodo()
 '
 Dim texto As String
 Sheets("Cadastro_Dados").Select
-SelecionaIndicador ("MÈtodos")
+SelecionaIndicador ("M√©todos")
 If Range("C39") <> "" Then
     texto = Range("C39")
     ColaTextoWord (texto) & "  "
@@ -417,7 +417,7 @@ Do While (texto <> "")
         InsereParagrafoWord
         Else
         texto = Worksheets("Dados").Cells(41 + CONTAR, 17).Text
-        'MsgBox ("Planilha N„o vencido=" & texto)
+        'MsgBox ("Planilha N√£o vencido=" & texto)
         'MsgBox (texto)
         NaoVencido (texto)
         InsereParagrafoWord
@@ -443,12 +443,12 @@ Dim data_final As Variant
     
     If data_inicial = data_final Then
         Sheets("Dados").Select
-        Range("Dados!BH1:BH1") = "Data da calibraÁ„o: "
+        Range("Dados!BH1:BH1") = "Data da calibra√ß√£o: "
         Range("Dados!BK1:BK1").Value = Range("Dados!BH1:BH1") & data_inicial
     End If
     If data_inicial <> data_final Then
         Sheets("Cadastro_Dados").Select
-        Range("Dados!BH1:BH1") = "PerÌodo de calibraÁ„o: "
+        Range("Dados!BH1:BH1") = "Per√≠odo de calibra√ß√£o: "
         Range("Dados!BK1:BK1").Value = Range("Dados!BH1:BH1") & data_inicial & " a " & data_final
     End If
     
@@ -505,7 +505,7 @@ SelecionaIndicador ("Convencao")
 Do While (CONTAR < 46)
     deleta
     CONTAR = CONTAR + 1
-    'MsgBox ("Delete n˙mero=" & contar)
+    'MsgBox ("Delete n√∫mero=" & contar)
     Loop
     
     SelecionaIndicador ("Convencao")
@@ -534,7 +534,7 @@ Dim oDoc As Word.Document
 
 Do While (i < pontos)
     With objWord.Selection.Find
-        .Text = "ó"
+        .Text = "¬ó"
         '.Replacement.Text = ""
         .Forward = True
         .Wrap = wdFindAsk
@@ -646,8 +646,8 @@ Loop
 If vencido = 0 Then
 
 Else
-    MsgBox ("Existem " & vencido & " padrıes vencidos")
-    MsgBox ("Padrıes vencidos: " & padroesvencidos)
+    MsgBox ("Existem " & vencido & " padr√µes vencidos")
+    MsgBox ("Padr√µes vencidos: " & padroesvencidos)
     Sheets("Cadastro_Dados").Select
     Exit Sub
 End If
@@ -676,9 +676,9 @@ Application.ScreenUpdating = False
     'Range("H2").Select
     ActiveSheet.Next.Select
     texto = CertNum
-    'MsgBox ("N˙mero do certificado" & CertNum)
+    'MsgBox ("N√∫mero do certificado" & CertNum)
        
-    SelecionaIndicador ("N˙mero")
+    SelecionaIndicador ("N√∫mero")
     ColaTextoWord (texto)
     SelecionaIndicador ("Data")
     'MsgBox (dataEmissao)
@@ -704,7 +704,7 @@ Application.ScreenUpdating = False
     texto = Range("F6:F6").Text
     ColaTextoWord (texto)
     
-    SelecionaIndicador ("SÈrie")
+    SelecionaIndicador ("S√©rie")
     texto = Range("G6:G6").Text
     ColaTextoWord (texto)
     
@@ -726,7 +726,7 @@ Application.ScreenUpdating = False
        
     Else
         If Range("F2") = "" Then
-            MsgBox ("Preencha a data da calibraÁ„o da planilha " & NomePlan)
+            MsgBox ("Preencha a data da calibra√ß√£o da planilha " & NomePlan)
             Exit Sub
         End If
         If Range("F1") = "" Then
